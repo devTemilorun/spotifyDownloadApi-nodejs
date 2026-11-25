@@ -18,5 +18,10 @@ const upload = multer({
   }
 });
 export const downloadRouter = Router();
-downloadRouter.post('/', upload.single('audio'), validateBody(downloadBodySchema), asyncHandler(createDownload));
+downloadRouter.post(
+  '/',
+  upload.single('audio'),
+  validateBody(downloadBodySchema),
+  asyncHandler((req, res) => createDownload(req as Parameters<typeof createDownload>[0], res))
+);
 downloadRouter.get('/:jobId', asyncHandler(getDownload));
