@@ -1,4 +1,10 @@
 import { Router } from 'express';
-
+import { trackRouter } from './track.routes.js';
+import { downloadRouter } from './download.routes.js';
+import { progressRouter } from './progress.routes.js';
+import { healthRouter } from './health.routes.js';
 export const apiRouter = Router();
-
+apiRouter.use('/health', healthRouter);
+apiRouter.use('/tracks', trackRouter);
+apiRouter.use('/downloads', downloadRouter);
+apiRouter.use('/progress', progressRouter);
